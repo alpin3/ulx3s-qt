@@ -41,6 +41,16 @@ docker cp ulx3sbin:/usr/local/bin static-bin
 docker rm ulx3sbin
 ```
 
+## Examples
+
+Typical usage (with QT):
+
+```
+XSOCK=/tmp/.X11-unix
+XAUTH=/tmp/.docker.xauth
+xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+docker run -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH alpin3/ulx3s-qt
+```
 
 
 
